@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
   },
   getStartedText: {
     fontSize: 15,
+    fontWeight: 'bold',
     color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
     marginLeft: 10,

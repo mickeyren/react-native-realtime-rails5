@@ -29,10 +29,7 @@ export default TabNavigator(
     },        
     Discussion: {
       screen: DiscussionScreen,
-    },        
-    Settings: {
-      screen: SettingsScreen,
-    },
+    }
   },
   {
     navigationOptions: ({ navigation }) => ({
