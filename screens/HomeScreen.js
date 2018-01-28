@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Dimensions,
   Image,
   Platform,
   ScrollView,
@@ -8,11 +9,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Card, ListItem, Button } from 'react-native-elements'
+import { Card, ListItem, Button } from 'native-base'
 import { WebBrowser } from 'expo';
-
 import { MonoText } from '../components/StyledText';
-
 
 const users = [
   {
@@ -21,32 +20,27 @@ const users = [
   },
  ]
 
+const win = Dimensions.get('window')
+const imageHeight = Math.round(win.width * 9 / 16)
+const imageWidth = win.width
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
-  
+
   render() {
     return (
       <View style={styles.container}>
-        <Card title="CARD WITH DIVIDER">
-          {
-            users.map((u, i) => {
-              return (
-                <View key={i} style={styles.user}>
-                  <Image
-                    style={styles.image}
-                    resizeMode="cover"
-                    source={{ uri: u.avatar }}
-                  />
-                  <Text style={styles.name}>{u.name}</Text>
-                </View>
-              );
-            })
-          }
-        </Card>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+          <Card>
+            <Image
+              style={{width: '100%', height: 400}}
+              source={require('../assets/images/logo.png')}
+            />
+          </Card>
+          <Text style={styles.getStartedText}>GroupFire... The Professional Engagement System</Text>
           <View style={styles.welcomeContainer}>
             <Image
               source={
@@ -57,10 +51,7 @@ export default class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
-
           <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
             <Text style={styles.getStartedText}>Get started by opening</Text>
 
             <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
@@ -78,14 +69,6 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
       </View>
     );
   }
@@ -167,10 +150,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   getStartedText: {
-    fontSize: 17,
+    fontSize: 15,
     color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
-    textAlign: 'center',
+    marginLeft: 10,
+    textAlign: 'left',
   },
   tabBarInfoContainer: {
     position: 'absolute',
